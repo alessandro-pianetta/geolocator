@@ -2,7 +2,6 @@ import React from 'react'
 
 const Map = (props) => {
   const { api, lat, lng } = props
-  console.log(lat, lng)
   return (
     <div className="map">
       <iframe

@@ -10,26 +10,23 @@ const MAPS_API_KEY = 'AIzaSyDRAK9QFWrWXVzlHFO0LXSo_UBrMedOsME'
 
 
 class App extends Component {
-  constructor(props) {
-    super(props)
+  componentWillMount() {
     this.state = {
-      lng: '0',
-      lat: '0'
+      lng: '',
+      lat: ''
     }
+    this.getLocation()  
   }
 
-  componentDidMount() {
-    const self = this
+  getLocation() {
     axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GEOLOCATION_API_KEY}`)
-      .then(function (response) {
+      .then(response => {
         const loc = response.data.location
-        console.log(loc)
-        self.setState({ lat: loc.lat, lng: loc.lng })
+        this.setState({ lat: loc.lat, lng: loc.lng })
       })
-      .catch(function (error) {
+      .catch(error => {
         console.log(error)
       })
-
   }
 
   render() {
