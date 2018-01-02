@@ -9,8 +9,8 @@ const Map = (props) => {
         title="map"
         width="600"
         height="450"
-        frameborder="0"
-        src={`https://www.google.com/maps/embed/v1/view?zoom=12&center=${lng}%2C${lat}&key=${api}`}
+        frameBorder="0"
+              src={`https://www.google.com/maps/embed/v1/view?zoom=12&center=${lat}%2C${lng}&key=${api}`}
       />
     </div>
   )
