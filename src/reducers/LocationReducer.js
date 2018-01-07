@@ -1,4 +1,4 @@
-import { GET_LOCATION } from '../actions/types'
+import { GET_LOCATION, FORMAT_ADDRESS } from '../actions/types'
 
 const INITIAL_STATE = {
     lat: '',
@@ -8,7 +8,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case GET_LOCATION:
-            return { lat: action.payload.lat, lng: action.payload.lng }
+            return { ...state, lat: action.payload.lat, lng: action.payload.lng }
+        case FORMAT_ADDRESS:
+            return { ...state, lat: action.payload.lat, lng: action.payload.lng }
         default:
             return state
     }

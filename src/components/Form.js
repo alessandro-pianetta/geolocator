@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
+
+import { formatAddress } from '../actions/LocationActions'
+
 
 class Form extends Component {
     componentWillMount() {
@@ -13,16 +16,8 @@ class Form extends Component {
     }
 
     handleSubmit(event) {
-        axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.value}&key=${this.props.api}`)
-            .then(response => {
-                const loc = response.data.results[0].geometry.location
-                console.log(loc)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.props.formatAddress(this.state.value, this.props.api)
         event.preventDefault()        
-
     }
 
     render() {
@@ -40,4 +35,12 @@ class Form extends Component {
     }
 }
 
-export default Form
+const mapStateToProps = (state) => {
+    return {
+        lat: state.lat,
+        lng: state.lng
+    }
+}
+
+
+export default connect(mapStateToProps, { formatAddress })(Form)

@@ -15,7 +15,7 @@ const GEOCODING_API_KEY = 'AIzaSyAXMR9EuOAD6cUnJpBOEJo1Lxf-behgmCc'
 
 class RootContainer extends Component {
     componentWillMount() {
-        this.props.getLocation()
+        this.props.getLocation(MAPS_API_KEY)
     }
 
 
