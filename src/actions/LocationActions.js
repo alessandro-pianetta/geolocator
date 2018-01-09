@@ -6,7 +6,6 @@ export const getLocation = (api) => {
         axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${api}`)
             .then(response => {
                 const loc = response.data.location
-                console.log(response)
                 dispatch({ type: GET_LOCATION, payload: loc })
             })
             .catch(error => {

@@ -23,7 +23,7 @@ class Form extends Component {
     render() {
         return (
             <form
-                style={{marginTop: '52vh'}}    
+                // style={{marginTop: '52vh'}}    
                 onSubmit={this.handleSubmit.bind(this)}
             >
                 <input
