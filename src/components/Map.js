@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-export default class CustomMap extends Component {
+export default class Map extends Component {
     
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.google) {
+        if (!prevProps.location.lat || !prevProps.location.lng) {
             this.loadMap()
+        } else {
+            this.recenterMap()
         }
     }
 
@@ -16,7 +18,7 @@ export default class CustomMap extends Component {
 
             const mapRef = this.refs.map
             const node = ReactDOM.findDOMNode(mapRef)
-            let zoom = 14;
+            let zoom = 18;
             let lat = location.lat;
             let lng = location.lng;
             const center = new maps.LatLng(lat, lng);
@@ -29,22 +31,25 @@ export default class CustomMap extends Component {
         }
     }
 
+    recenterMap() {
+        const map = this.map;
+        const curr = this.props.location;
+
+        const google = this.props.google;
+        const maps = google.maps;
+
+        if (map) {
+            let center = new maps.LatLng(curr.lat, curr.lng)
+            map.panTo(center)
+        }
+    }
+
+
     render() {
-        console.log(this.props)
         return (
             <div ref='map' style={{ width: '100vw', height: '50vh' }}>
                 Loading map...
             </div>
-
-            // <div className="map">
-            //     <iframe
-            //         title="map"
-            //         width="600"
-            //         height="450"
-            //         frameBorder="0"
-            //         src={`https://www.google.com/maps/embed/v1/view?zoom=17&center=${props.lat}%2C${props.lng}&key=${props.api}`}
-            //     />
-            // </div>
         )
     }
     

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { GoogleApiWrapper } from 'google-maps-react'
 
-import CustomMap from './CustomMap'
+import Map from './Map'
 
 
 
@@ -13,26 +13,9 @@ class MapContainer extends Component {
     render() {
         const { lat, lng, google } = this.props
 
-        // if (!this.props.loaded) {
-        //     return <div>Loading...</div>
-        // }
-
         return (
             <div className="map-container">
-                {/* <Map
-                    google={google}
-                    style={styles.mapStyle}
-                    initialCenter={{
-                        lat: lat || 37,
-                        lng: lng || -122
-                    }}
-                    center={{ lat, lng }}
-                    className='map'
-                    zoom={15}
-                >
-                    <Marker position={{ lat, lng }} />
-                </Map>     */}
-                <CustomMap google={google} location={{ lat, lng }} />
+                <Map google={google} location={{ lat, lng }} />
             </div>
         )
     }

@@ -3,14 +3,9 @@ import { GET_LOCATION, FORMAT_ADDRESS } from './types'
 
 export const getLocation = (api) => {
     return (dispatch) => {
-        axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${api}`)
-            .then(response => {
-                const loc = response.data.location
-                dispatch({ type: GET_LOCATION, payload: loc })
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        navigator.geolocation.getCurrentPosition((pos) => {
+            dispatch({ type: GET_LOCATION, payload: pos.coords })
+        })
     }
 }
 
