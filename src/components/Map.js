@@ -30,7 +30,6 @@ export default class Map extends Component {
             const pref = {
                 map: this.map,
                 position: center,
-                animation: google.maps.Animation.DROP,
             }
             this.geoLocaton = new google.maps.Marker(pref)
         }
