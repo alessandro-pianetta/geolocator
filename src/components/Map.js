@@ -26,7 +26,6 @@ export default class Map extends Component {
             const center = new maps.LatLng(lat, lng)
             const mapConfig = Object.assign({}, { center, zoom })
             this.map = new maps.Map(node, mapConfig)
-
         }
     }
 

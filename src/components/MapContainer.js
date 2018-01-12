@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { GoogleApiWrapper } from 'google-maps-react'
 
+import { MAPS_JS_API_KEY } from './apiKeys'
+
 import Map from './Map'
 import Marker from './Marker'
 
 
 
-class MapContainer extends Component {
-    componentWillMount() {
-        const api = this.props.api
-    }
-    
+class MapContainer extends Component {    
     render() {
         const { lat, lng, google } = this.props
 
@@ -24,15 +22,7 @@ class MapContainer extends Component {
     }
 }
 
-const styles = {
-    mapStyle: {
-        height: '100%',
-        width: '100%',
-        position: 'relative'
-    }
-}
-
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDYkj8Bkx00wOSKafVdMXpF_LTj7nx_uO0',
+    apiKey: MAPS_JS_API_KEY,
     libraries: ['places']
 })(MapContainer)

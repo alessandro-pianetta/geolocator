@@ -3,7 +3,9 @@ import { GET_LOCATION, FORMAT_ADDRESS } from './types'
 
 export const getLocation = (api) => {
     return (dispatch) => {
-        navigator.geolocation.getCurrentPosition((pos) => {
+        const { geolocation } = navigator
+
+        geolocation.getCurrentPosition((pos) => {
             dispatch({ type: GET_LOCATION, payload: pos.coords })
         })
     }
