@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { GoogleApiWrapper } from 'google-maps-react'
 
 import Map from './Map'
+import Marker from './Marker'
 
 
 
@@ -15,7 +16,9 @@ class MapContainer extends Component {
 
         return (
             <div className="map-container">
-                <Map google={google} location={{ lat, lng }} />
+                <Map google={google} location={{ lat, lng }}>
+                    <Marker />    
+                </Map>    
             </div>
         )
     }

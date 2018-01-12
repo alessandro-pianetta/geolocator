@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom'
 export default class Map extends Component {
     
     componentDidUpdate(prevProps, prevState) {
-        if (!prevProps.location.lat || !prevProps.location.lng) {
+        const { location } = prevProps
+
+        if (!location.lat || !location.lng) {
             this.loadMap()
         } else {
             this.recenterMap()
@@ -18,37 +20,49 @@ export default class Map extends Component {
 
             const mapRef = this.refs.map
             const node = ReactDOM.findDOMNode(mapRef)
-            let zoom = 18;
-            let lat = location.lat;
-            let lng = location.lng;
-            const center = new maps.LatLng(lat, lng);
-            const mapConfig = Object.assign({}, {
-                center: center,
-                zoom: zoom
-            })
-            this.map = new maps.Map(node, mapConfig);
+            let zoom = 18
+            let lat = location.lat
+            let lng = location.lng
+            const center = new maps.LatLng(lat, lng)
+            const mapConfig = Object.assign({}, { center, zoom })
+            this.map = new maps.Map(node, mapConfig)
 
         }
     }
 
     recenterMap() {
-        const map = this.map;
-        const curr = this.props.location;
+        const map = this.map
+        const { lat, lng } = this.props.location
 
-        const google = this.props.google;
-        const maps = google.maps;
+        const google = this.props.google
+        const maps = google.maps
 
         if (map) {
-            let center = new maps.LatLng(curr.lat, curr.lng)
+            let center = new maps.LatLng(lat, lng)
             map.panTo(center)
         }
     }
 
+    renderChildren() {
+        const { children } = this.props
+
+        if (!children) return
+
+        return React.Children.map(children, c => {
+            return React.cloneElement(c, {
+                map: this.map,
+                google: this.props.google,
+                mapCenter: this.props.location
+            });
+        })
+
+    }
 
     render() {
         return (
             <div ref='map' style={{ width: '100vw', height: '50vh' }}>
                 Loading map...
+                {this.renderChildren()}
             </div>
         )
     }
