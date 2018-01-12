@@ -11,7 +11,7 @@ export default class Marker extends Component {
     }
 
     renderMarker() {
-        let { map, google, mapCenter } = this.props
+        const { google, map, mapCenter } = this.props
 
         const pref = {
             map,

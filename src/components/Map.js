@@ -26,6 +26,13 @@ export default class Map extends Component {
             const center = new maps.LatLng(lat, lng)
             const mapConfig = Object.assign({}, { center, zoom })
             this.map = new maps.Map(node, mapConfig)
+
+            const pref = {
+                map: this.map,
+                position: center,
+                animation: google.maps.Animation.DROP,
+            }
+            this.geoLocaton = new google.maps.Marker(pref)
         }
     }
 
