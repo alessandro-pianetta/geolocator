@@ -60,8 +60,10 @@ export default class Map extends Component {
 
     render() {
         return (
-            <div ref='map' style={{ width: '100vw', height: '50vh' }}>
-                Loading map...
+            <div>
+                <div ref='map' style={{ width: '100vw', height: '50vh' }}>
+                    Loading map...
+                </div>
                 {this.renderChildren()}
             </div>
         )
