@@ -38,14 +38,9 @@ export default class Map extends Component {
     recenterMap() {
         const map = this.map
         const { lat, lng } = this.props.location
+        const maps = this.props.google.maps
 
-        const google = this.props.google
-        const maps = google.maps
-
-        if (map) {
-            let center = new maps.LatLng(lat, lng)
-            map.panTo(center)
-        }
+        map.panTo(new maps.LatLng(lat, lng))
     }
 
     renderChildren() {
