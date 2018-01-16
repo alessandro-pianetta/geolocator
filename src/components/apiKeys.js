@@ -1,0 +1,5 @@
+export const DISTANCE_MATRIX_API_KEY = 'AIzaSyBBZHgiSDC29of6ScN06tDP_8Z95Mfntwo'
+export const GEOLOCATION_API_KEY = 'AIzaSyAaolAhdtSrjlPa6OJUVoOIJ4RucD8gNkA'
+export const EMBEDDED_MAPS_API_KEY = 'AIzaSyDRAK9QFWrWXVzlHFO0LXSo_UBrMedOsME'
+export const GEOCODING_API_KEY = 'AIzaSyAXMR9EuOAD6cUnJpBOEJo1Lxf-behgmCc'
+export const MAPS_JS_API_KEY = 'AIzaSyDYkj8Bkx00wOSKafVdMXpF_LTj7nx_uO0'
