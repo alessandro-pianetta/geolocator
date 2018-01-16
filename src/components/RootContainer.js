@@ -15,10 +15,12 @@ class RootContainer extends Component {
 
 
     render() {
+        const { lat, lng, google } = this.props
+        
         return (
             <div className="root-container">
-                <MapContainer api={MAPS_JS_API_KEY} lat={this.props.lat} lng={this.props.lng} />
-                <Form api={GEOCODING_API_KEY}  />
+                <MapContainer api={MAPS_JS_API_KEY} lat={lat} lng={lng} google={google} />
+                <Form api={GEOCODING_API_KEY} google={google} />
             </div>
         )
     }
