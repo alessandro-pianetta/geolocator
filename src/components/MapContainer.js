@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { GoogleApiWrapper } from 'google-maps-react'
-
-import { MAPS_JS_API_KEY } from './apiKeys'
 
 import Map from './Map'
 import Marker from './Marker'
@@ -22,7 +19,4 @@ class MapContainer extends Component {
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: MAPS_JS_API_KEY,
-    libraries: ['places']
-})(MapContainer)
+export default MapContainer
