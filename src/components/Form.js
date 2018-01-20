@@ -6,7 +6,6 @@ import { formatAddress } from '../actions/LocationActions'
 
 class Form extends Component {
     componentWillMount() {
-        console.log(this.props)
         this.state = {
             value: '',
             init: false
@@ -58,8 +57,8 @@ class Form extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        lat: state.lat,
-        lng: state.lng
+        targetLat: state.lat,
+        targetLng: state.lng
     }
 }
 

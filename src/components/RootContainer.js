@@ -5,7 +5,8 @@ import { getLocation } from '../actions/LocationActions'
 
 import { MAPS_JS_API_KEY, GEOCODING_API_KEY } from './apiKeys'
 
-import MapContainer from './MapContainer';
+import Map from './Map';
+import Marker from './Marker';
 import Form from './Form';
 
 class RootContainer extends Component {
@@ -19,7 +20,16 @@ class RootContainer extends Component {
         
         return (
             <div className="root-container">
-                <MapContainer api={MAPS_JS_API_KEY} lat={lat} lng={lng} google={google} />
+                <Map
+                    api={MAPS_JS_API_KEY}
+                    google={google}
+                    location={{ lat, lng }}
+                    getLocation={this.props.getLocation}
+                    target={{ lat: this.props.targetLat, lng: this.props.targetLng }}
+                >
+                    <Marker target={{ lat: this.props.targetLat, lng: this.props.targetLng }}/>
+                </Map>    
+
                 <Form api={GEOCODING_API_KEY} google={google} />
             </div>
         )
@@ -29,7 +39,9 @@ class RootContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         lat: state.lat,
-        lng: state.lng
+        lng: state.lng,
+        targetLat: state.targetLat,
+        targetLng: state.targetLng
     }
 }
 

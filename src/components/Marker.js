@@ -13,11 +13,11 @@ export default class Marker extends Component {
     }
 
     renderMarker() {
-        const { google, map, mapCenter } = this.props
+        const { google, map, target } = this.props
 
         const pref = {
             map,
-            position: new google.maps.LatLng(mapCenter.lat, mapCenter.lng),
+            position: new google.maps.LatLng(target.lat, target.lng),
             animation: google.maps.Animation.DROP,
         }
 
@@ -30,7 +30,7 @@ export default class Marker extends Component {
             fillColor: '#FF0000',
             fillOpacity: 0.35,
             map: map,
-            center: { lat: mapCenter.lat, lng: mapCenter.lng },
+            center: { lat: target.lat, lng: target.lng },
             radius: 1500 
         });
 
