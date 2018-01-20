@@ -11,6 +11,7 @@ export default class Map extends Component {
             this.watchLocation()
         } else {
             this.recenterMap(target.lat, target.lng)
+            this.map.setZoom(13)
         }
     }
 
@@ -51,13 +52,16 @@ export default class Map extends Component {
 
     watchLocation() {
         const success = (pos) => {
+            const { target } = this.props
             const crd = pos.coords
 
-            if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
+            if (target.lat === crd.latitude && target.lng === crd.longitude) {
                 console.log('Congratulations, you reached the target');
                 navigator.geolocation.clearWatch(id);
             } else {
-                console.log(crd)
+                if (target.lat && target.lng) {
+                    console.log(this.checkDistance(crd.latitude, crd.longitude, target.lat, target.lng))
+                }
                 this.recenterMap(crd.latitude, crd.longitude)
                 this.showCurrentLocation(crd.latitude, crd.longitude)
             }
@@ -66,11 +70,6 @@ export default class Map extends Component {
         const error = (err) => {
             console.warn('ERROR(' + err.code + '): ' + err.message);
         }
-
-        const target = {
-            latitude: 0,
-            longitude: 0
-        };
 
         const id = navigator.geolocation.watchPosition(success, error);
     }
@@ -95,6 +94,16 @@ export default class Map extends Component {
             });
         })
 
+    }
+
+    checkDistance(currentLat, currentLng, targetLat, targetLng) {
+        var p = 0.017453292519943295;    // Math.PI / 180
+        var c = Math.cos;
+        var a = 0.5 - c((targetLat - currentLat) * p) / 2 +
+            c(currentLat * p) * c(targetLat * p) *
+            (1 - c((targetLng - currentLng) * p)) / 2;
+
+        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     }
 
     render() {

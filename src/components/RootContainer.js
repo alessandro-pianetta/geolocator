@@ -17,7 +17,6 @@ class RootContainer extends Component {
 
     render() {
         const { lat, lng, google } = this.props
-        
         return (
             <div className="root-container">
                 <Map
