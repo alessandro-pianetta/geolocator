@@ -55,13 +55,15 @@ export default class Map extends Component {
             const { target } = this.props
             const crd = pos.coords
 
-            if (target.lat === crd.latitude && target.lng === crd.longitude) {
-                console.log('Congratulations, you reached the target');
+            if (target.lat && target.lng) {
+                this.distance = this.checkDistance(crd.latitude, crd.longitude, target.lat, target.lng)
+                console.log(this.distance)
+            }
+
+            if (this.distance !== undefined && this.distance < 5) {
+                alert('Congratulations, you reached the target');
                 navigator.geolocation.clearWatch(id);
             } else {
-                if (target.lat && target.lng) {
-                    console.log(this.checkDistance(crd.latitude, crd.longitude, target.lat, target.lng))
-                }
                 this.recenterMap(crd.latitude, crd.longitude)
                 this.showCurrentLocation(crd.latitude, crd.longitude)
             }
