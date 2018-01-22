@@ -10,16 +10,46 @@ import './App.css'
 import location from './reducers/LocationReducer'
 import RootContainer from './components/RootContainer';
 
+const store = createStore(location, {}, applyMiddleware(ReduxThunk))
 
 class App extends Component {
-  render() {
-    const store = createStore(location, {}, applyMiddleware(ReduxThunk))
+  state = {
+    googleReady: false
+  }
 
-    return (
-      <Provider store={store}>
-        <RootContainer google={this.props.google} />
-      </Provider>
-    )
+  constructor(props) {
+    super(props)
+
+    const { googleReady } = this.state;
+
+    if (!googleReady) {
+      // console.log('waiting for google')
+      this.interval = setInterval(() => {
+        if (window.google) {
+          // console.log('google is available')
+          this.setState({ googleReady: true })
+          clearInterval(this.interval)
+        }
+      }, 100);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
+  render() {
+    const { googleReady } = this.state;
+
+    if (googleReady) {
+      return (
+        <Provider store={store}>
+          <RootContainer google={this.props.google} />
+        </Provider>
+      );
+    }
+
+    return null
   }
 }
 

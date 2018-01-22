@@ -6,10 +6,10 @@ import { formatAddress } from '../actions/LocationActions'
 
 class Form extends Component {
     componentWillMount() {
-        this.state = {
+        this.setState({
             value: '',
             init: false
-        }
+        })
     }
     
     componentWillUpdate() {
