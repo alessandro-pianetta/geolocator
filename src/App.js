@@ -14,7 +14,7 @@ const store = createStore(location, {}, applyMiddleware(ReduxThunk))
 
 class App extends Component {
   state = {
-    googleReady: false
+    googleReady: !!window.google
   }
 
   constructor(props) {
