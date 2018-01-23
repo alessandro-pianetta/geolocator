@@ -49,7 +49,7 @@ class Form extends Component {
                     onChange={this.handleChange.bind(this)}
                     placeholder="250 Hamilton Ave, Palo Alto, CA 94301"
                 />
-                <button>Submit</button>
+                <button id="submit">Submit</button>
             </form>
         )
     }
