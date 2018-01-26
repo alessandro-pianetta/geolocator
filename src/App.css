@@ -31,7 +31,7 @@
   display: block;
   height: 75px;
   width: 300px;
-  margin: 25px auto;
+  margin: 0 auto;
   background: #C60000;
   font-size: 25px;
   color: white;
@@ -40,13 +40,13 @@
 
 #submit:hover {
   background: #FF0000;
-  transition: all 350ms linear;
+  transition: all 250ms linear;
 }
 
 #submit:active {
   background: #9B0000;
   opacity: 1;
-  transition: all 350ms linear;
+  transition: all 150ms linear;
 }
 
 #submit:focus {
