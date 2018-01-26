@@ -12,3 +12,43 @@
   width: 100% !important;
   height: 50% !important;
 }
+
+/* Address Input */
+#autocomplete {
+  width: 75%;
+  height: 35px;
+  padding: 0 5px;
+  font-size: 22px;
+  margin: 25px 0;
+}
+
+#autocomplete:focus {
+  outline:0;
+}
+
+/* Submit Button */
+#submit {
+  display: block;
+  height: 75px;
+  width: 300px;
+  margin: 0 auto;
+  background: #C60000;
+  font-size: 25px;
+  color: white;
+  border-radius: 6px;
+}
+
+#submit:hover {
+  background: #FF0000;
+  transition: all 250ms linear;
+}
+
+#submit:active {
+  background: #9B0000;
+  opacity: 1;
+  transition: all 150ms linear;
+}
+
+#submit:focus {
+  outline:0;
+}

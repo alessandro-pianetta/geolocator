@@ -54,14 +54,15 @@ export default class Map extends Component {
         const success = (pos) => {
             const { target } = this.props
             const crd = pos.coords
+            this.distance = this.checkDistance(crd.latitude, crd.longitude, target.lat, target.lng)
 
-            if (target.lat === crd.latitude && target.lng === crd.longitude) {
-                console.log('Congratulations, you reached the target');
-                navigator.geolocation.clearWatch(id);
-            } else {
-                if (target.lat && target.lng) {
-                    console.log(this.checkDistance(crd.latitude, crd.longitude, target.lat, target.lng))
+            if (typeof (this.distance) === 'number' && this.distance <= 1.5) {
+                if (!this.alerted) {
+                    alert('Congratulations, you reached the target');
+                    this.alerted = true
+                    navigator.geolocation.clearWatch(id);
                 }
+            } else {
                 this.recenterMap(crd.latitude, crd.longitude)
                 this.showCurrentLocation(crd.latitude, crd.longitude)
             }
@@ -97,6 +98,11 @@ export default class Map extends Component {
     }
 
     checkDistance(currentLat, currentLng, targetLat, targetLng) {
+        if (!targetLat || !targetLng) {
+            console.log(targetLat, targetLng, 'No target')
+            return undefined
+        }
+
         var p = 0.017453292519943295;    // Math.PI / 180
         var c = Math.cos;
         var a = 0.5 - c((targetLat - currentLat) * p) / 2 +
