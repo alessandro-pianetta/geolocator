@@ -6,7 +6,7 @@ import { formatAddress } from '../actions/LocationActions'
 
 class Form extends Component {
     componentWillMount() {
-        this.state = {
+        this.setState({
             address: '',
             radius: '',
             phone: '',
@@ -14,7 +14,7 @@ class Form extends Component {
             recipient: '',
             message: '',
             init: false
-        }
+        })
     }
     
     componentWillUpdate() {
